@@ -3,6 +3,7 @@ import {
   useContext,
   useEffect,
   useState,
+  useCallback
 } from "react";
 
  const ProdContext = createContext(null);
@@ -52,13 +53,16 @@ useEffect(() => {
     fetchProducts();
   }, []);
 
-  const toggleProductVisibility = (productId) => {
-  setHiddenProductIds((prev) =>
-    prev.includes(productId)
-      ? prev.filter((id) => id !== productId)
-      : [...prev, productId]
-  );
-};
+  const toggleProductVisibility = useCallback(
+  (productId) => {
+    setHiddenProductIds((prev) =>
+      prev.includes(productId)
+        ? prev.filter((id) => id !== productId)
+        : [...prev, productId]
+    );
+  },
+  []
+);
 
   return (
     <ProdContext.Provider value={{ products, loading, error,hiddenProductIds,toggleProductVisibility}}>

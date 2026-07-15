@@ -70,7 +70,7 @@ export default function TopNavbar({setSidebarOpen=false}) {
       <p className="font-semibold text-slate-900">
         {user?.name}
       </p>
-     <p className="font-semibold text-slate-900">
+     <p className="font-semibold text-slate-900 ">
         {user?.email}
       </p>
       <p className="text-sm capitalize text-slate-500">
@@ -83,7 +83,7 @@ export default function TopNavbar({setSidebarOpen=false}) {
         onClick={() => setLogout(true)}
         className="w-full rounded-lg px-3 py-2 text-left text-sm text-red-600 hover:bg-red-50"
       >
-        Logout
+      Logout
       </button>
     </div>
   )}

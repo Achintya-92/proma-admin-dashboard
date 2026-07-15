@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 function ProductRow({
   product,
   isAdmin,
-  hiddenProductIds = [],
+  isHidden,
   toggleProductVisibility,
 }) {
   const navigate = useNavigate();
@@ -71,12 +71,12 @@ function ProductRow({
               toggleProductVisibility(product.id);
             }}
             className={`rounded-full px-3 py-1 text-xs font-semibold ${
-              hiddenProductIds.includes(product.id)
+              isHidden
                 ? "bg-red-50 text-red-700"
                 : "bg-emerald-50 text-emerald-700"
             }`}
           >
-            {hiddenProductIds.includes(product.id)
+            {isHidden
               ? "Hidden"
               : "Published"}
           </button>
