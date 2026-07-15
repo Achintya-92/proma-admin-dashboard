@@ -119,20 +119,20 @@ npm run dev
 ### Admin
 
 ```text id="h6oxxq"
-Email: <admin-email>
-Password: <admin-password>
+Email: <admin@promana.com>
+Password: <admin123>
 ```
 
 ### User
 
 ```text id="y5f63k"
-Email: <user-email>
-Password: <user-password>
+Email: <user@promana.com>
+Password: <user123>
 ```
 
 ## Live Demo
 
-`<vercel-link>`
+`<https://proma-admin-dashboard.vercel.app/>`
 
 ## Author
 
