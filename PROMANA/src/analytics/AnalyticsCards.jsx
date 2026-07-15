@@ -8,7 +8,7 @@ export default function AnalyticsCards({totalProducts,totalInventoryValue,averag
     <div>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
         <Cards title={"Total Producs"} value={totalProducts} gradient={cardStyles[0]}/>
-        <Cards title={"Average Rating"} value={averageRating} gradient={cardStyles[1]}/>
+        <Cards title={"Average Rating"} value={averageRating.toFixed(2)} gradient={cardStyles[1]}/>
         <Cards title={"Total Inventory Value"} value={totalInventoryValue} gradient={cardStyles[2]}/>
     </div>
     </div>

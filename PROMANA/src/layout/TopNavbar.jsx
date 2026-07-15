@@ -25,11 +25,10 @@ export default function TopNavbar({setSidebarOpen=false}) {
       >
         <Menu size={22} />
       </button>)}
-        <h1 className=''></h1>
+                <span className="sm:text-2xl text-3xl  font-bold lg:ml-20 lg:text-4xl lg:font-semibold">PROMA</span>
       </div>
-        <span className="text-3xl font-bold">PROMA</span>
         
-        <div className='flex items-center gap-4'>
+        <div className='flex items-center sm:gap2 md:gap-4'>
            
           <div type="button" onClick={()=>navigate("/")} className='px-2'>
           <span >Home</span>
