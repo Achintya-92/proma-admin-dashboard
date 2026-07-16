@@ -5,13 +5,13 @@ const AuthContext = createContext(null);
 const SampleUsers = [
   {
     id: 1,
-    email: "admin@promana.com",
+    email: "admin@proma.com",
     password: "admin123",
     role: "admin",
   },
   {
     id: 2,
-    email: "user@promana.com",
+    email: "user@proma.com",
     password: "user123",
     role: "user",
   },
@@ -20,7 +20,7 @@ const SampleUsers = [
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
-    
+
     return storedUser ? JSON.parse(storedUser) : null;
   });
   
