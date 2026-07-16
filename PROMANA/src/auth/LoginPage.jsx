@@ -30,33 +30,11 @@ e.preventDefault();
 
 return (
     <>
-    <div className="rounded-xl border border-indigo-100 bg-indigo-50 p-4">
-  <p className="text-sm font-semibold text-indigo-900">
-    Demo Credentials
-  </p>
-
-  <div className="mt-3 space-y-3 text-sm">
-    <div>
-      <p className="font-medium text-slate-900">Admin</p>
-      <p className="text-slate-600">
-        admin@promana.com
-      </p>
-      <p className="text-slate-600">
-        Password: admin123
-      </p>
+    <div className="h-20 bg-slate-700 flex justify-center items-center shadow-md mb-8">
+     <h1 className="text-2xl md:text-3xl lg:text-4xl text-white">
+      PROMA
+     </h1>
     </div>
-
-    <div>
-      <p className="font-medium text-slate-900">User</p>
-      <p className="text-slate-600">
-        user@promana.com
-      </p>
-      <p className="text-slate-600">
-        Password: user123
-      </p>
-    </div>
-  </div>
-</div>
  <div className="relative bg-light min-h-[80%] flex justify-center items-center px-4">
       <div className="w-full
       max-w-md 
@@ -67,6 +45,9 @@ return (
       rounded-3xl
       mt-12
     bg-gradient-to-br from-blue-50 via-white to-emerald-50
+    hover:scale-103
+    transition
+    duration-800
       "
       >
         <div className="">
@@ -117,6 +98,36 @@ return (
           </form>
       </div>
     </div>
+    <div className="fixed bottom-0 w-[100vw]  border border-indigo-100 bg-indigo-50 p-8">
+       <p className="text-xl font-semibold text-indigo-900">
+    Demo Credentials
+  </p>
+  <div className="flex gap-8">
+
+  <div className="mt-3 space-y-3 text-sm">
+    <div>
+      <p className="font-medium text-slate-900">Admin</p>
+      <p className="text-slate-600">
+        admin@proma.com
+      </p>
+      <p className="text-slate-600">
+        Password: admin123
+      </p>
+    </div>
+    </div>
+<div className="mt-3 space-y-3 text-sm">
+    <div>
+      <p className="font-medium text-slate-900">User</p>
+      <p className="text-slate-600">
+        user@proma.com
+      </p>
+      <p className="text-slate-600">
+        Password: user123
+      </p>
+    </div>
+</div>
+  </div>
+</div>
     </>
   )
 }
