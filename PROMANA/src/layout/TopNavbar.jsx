@@ -10,10 +10,30 @@ export default function TopNavbar({setSidebarOpen=false}) {
   const [logout,setLogout]=useState(false);
   const  [profileOpen,setProfileOpen]=useState(false);
   const navigate=useNavigate();
-
-
+  
+  function Cancel(){
+    setLogout(false);
+  }
+  function LogOutFunc(){
+    localStorage.removeItem("user");
+    navigate("/");
+  }
   if(logout){
-    alert("Successfully LogOut!");
+    return(
+      <div className='bg-slate-50 min-h-screen flex items-center justify-center'>
+         <div className='p-8 bg-blue-200 rounded-2xl shadow-md'>
+             <h1 className='font-bold text-2xl py-16'>Are you sure! for LogOut</h1>
+<div className='flex justify-between'>
+<button className='px-8 py-2 rounded-2xl bg-red-50 text-red-700 hover:bg-red-700 hover:text-white' onClick={LogOutFunc}>
+        Yes
+        </button>
+        <button className='px-8 py-2 rounded-2xl bg-green-50 text-green-700 hover:bg-green-700 hover:text-white' onClick={Cancel}>
+         No
+         </button>
+         </div>
+         </div>
+        </div>
+    )
     navigate("/");
   }
   return (
