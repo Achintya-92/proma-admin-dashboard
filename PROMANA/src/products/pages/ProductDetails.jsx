@@ -1,11 +1,11 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useProducts } from "../context/ProdContext";
 import { useState } from "react";
+
 
 export default function ProductDetails() {
   const { id } = useParams();
   const [mainImage, setMainImage] = useState(0);
-
   const { products = [], error, loading } = useProducts();
 
   const product = products.find(
@@ -27,7 +27,6 @@ export default function ProductDetails() {
   return (
     <div className="bg-light px-4 py-6 sm:px-6 lg:px-16">
       {/* HEADER */}
-
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-slate-900 sm:text-3xl lg:text-4xl">
           Product Details

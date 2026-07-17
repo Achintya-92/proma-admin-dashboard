@@ -10,6 +10,8 @@ function ProductRow({
   const navigate = useNavigate();
 
   const handleRowClick = () => {
+   let tr=document.querySelector("tr");
+   tr.style.backgroundColor="slate";
     navigate(
       isAdmin
         ? `/admin/products/${product.id}`
