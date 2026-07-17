@@ -14,7 +14,7 @@ export default function Table({
       <table className="w-full text-left">
         <thead className="border-b border-slate-200 bg-slate-50">
           <tr>
-            <th className="px-6 py-4">Product</th>
+            <th className="px-4 lg:px-6 py-4">Product</th>
             <th className="px-6 py-4">Category</th>
             <th className="px-6 py-4">Price</th>
             <th className="px-6 py-4">Stock Status</th>

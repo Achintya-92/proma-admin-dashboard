@@ -1,10 +1,9 @@
 import { useState } from 'react'
-import Sidebar from './Sidebar'
 import { Menu } from "lucide-react";
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../auth/context/AuthContext';
+import {useAuth} from '../auth/context/AuthContext';
 
-export default function TopNavbar({setSidebarOpen=false}) {
+export default function TopNavbar({ setSidebarOpen }) {
   const {user}=useAuth();
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [logout,setLogout]=useState(false);
@@ -34,21 +33,20 @@ export default function TopNavbar({setSidebarOpen=false}) {
          </div>
         </div>
     )
-    navigate("/");
   }
   return (
-      <nav className="md:h-16 lg:w-full z-50 flex items-center justify-between text-white border-slate-200 bg-slate-900 px-4">
+      <nav className="md:h-16 w-screen z-50 flex items-center justify-between text-white border-slate-200 bg-slate-900">
       <div className="flex">
-                {(setSidebarOpen &&  <button
+               {setSidebarOpen && (<button
         onClick={() => setSidebarOpen(true)}
-        className="px-4 lg:hidden"
+        className="lg:hidden"
       >
         <Menu size={22} />
       </button>)}
-                <span className="sm:text-2xl text-3xl  font-bold lg:ml-20 lg:text-4xl lg:font-semibold">PROMA</span>
+                <span className="ml-2 sm:text-xl  sm:font-semibold text-3xl lg:font-bold lg:ml-20 lg:text-4xl lg:font-semibold">PROMA</span>
       </div>
         
-        <div className='flex items-center sm:gap2 md:gap-4'>
+       <div className="hidden md:flex items-center gap-4">
            
           <div type="button" onClick={()=>navigate("/")} className='px-2'>
           <span >Home</span>

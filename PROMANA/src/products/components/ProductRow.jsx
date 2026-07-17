@@ -66,7 +66,7 @@ function ProductRow({
       </td>
 
       {isAdmin && (
-        <td className="px-6 py-4">
+        <td className="px-4 lg:px-6 py-4">
           <button
             onClick={(e) => {
               e.stopPropagation();
