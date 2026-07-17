@@ -1,11 +1,15 @@
 import { useState } from 'react'
-import { X } from "lucide-react";
+import {  X,
+  Home,
+  LayoutDashboard,
+  Package,
+  User,
+  LogOut, } from "lucide-react";
 import { useAuth } from '../auth/context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Sidebar({sidebarOpen,setSidebarOpen}) {
   const {user}=useAuth();
-  const [showUserMenu, setShowUserMenu] = useState(false)
   const [logout,setLogout]=useState(false);
   const [profileOpen,setProfileOpen]=useState(false);
   const navigate=useNavigate();
@@ -23,41 +27,79 @@ export default function Sidebar({sidebarOpen,setSidebarOpen}) {
          <div className='p-8 bg-blue-200 rounded-2xl shadow-md'>
              <h1 className='font-bold text-2xl py-16'>Are you sure! for LogOut</h1>
 <div className='flex justify-between'>
-<button className='px-8 py-2 rounded-2xl bg-red-50 text-red-700 hover:bg-red-700 hover:text-white' onClick={LogOutFunc}>
+<button type="button" className='px-8 py-2 rounded-2xl bg-red-50 text-red-700 hover:bg-red-700 hover:text-white' onClick={LogOutFunc}>
         Yes
         </button>
-        <button className='px-8 py-2 rounded-2xl bg-green-50 text-green-700 hover:bg-green-700 hover:text-white' onClick={Cancel}>
+        <button type="button" className='px-8 py-2 rounded-2xl bg-green-50 text-green-700 hover:bg-green-700 hover:text-white' onClick={Cancel}>
          No
          </button>
          </div>
          </div>
         </div>
     )
-    navigate("/");
   }
-  const menuItems = [
-    { name: 'Dashboard', path: '/admin/dashboard', icon: '📊' },
-    { name: 'Products', path: '/admin/products', icon: '📦' },
-  ]
+ const menuItems = [
+   {
+    name: "Home",
+    path: "/",
+    icon: Home,
+  },
+  {
+    name: "Products",
+    path: "/products",
+    icon: Package,
+  },
 
+  {
+    name: "Profile",
+    path: "#",
+    icon: User,
+    onClick: () => setProfileOpen((prev) => !prev),
+  },
+  {
+    name: "Logout",
+    path: "#",
+    icon: LogOut,
+    onClick: () => setLogout(true),
+    className: "text-red-400 hover:bg-red-900/20",
+  },
+];
+
+if(user.role==="admin"){
+  // i want dashboard at 1 index
+  menuItems.splice(1,0,{
+    name: "Dashboard",
+    path: "/admin/dashboard",
+    icon: LayoutDashboard,
+  });
+
+    menuItems.splice(2,1, {
+    name: "Products",
+    path: "/admin/products",
+    icon: Package,
+  });
+
+}
   return (
-    <aside
+  <aside
   className={`
+    fixed inset-y-0 left-0
     z-50
-    fixed inset-y-0 left-0 sm:w-64 lg:w-20
+    sm:w-64 lg:w-20
     bg-slate-900
+    overflow-visible
     transition-transform duration-300
-    
     ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
     lg:translate-x-0
   `}
 >
-      <nav className="text-white py-8 px-4">
+     <nav className="relative text-white py-8 px-4">
 <div className='flex items-center justify-between p-6'>
   <h1 className='text-2xl md:text-3xl  font-bold text-white lg:hidden'>
     Proma  
   </h1>
   <button
+  type="button"
   onClick={() => setSidebarOpen(false)}
   className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-slate-800 text-white lg:hidden"
   aria-label="Close sidebar"
@@ -65,58 +107,58 @@ export default function Sidebar({sidebarOpen,setSidebarOpen}) {
   <X size={22} />
 </button>
 </div>
-{/* <hr  className="text-white w-full" />. */}
-        <ul className='py-8'>
-          {menuItems.map((item) => (
-            <li key={item.name} className='p-4'>
-              <a href={item.path} className="nav-link">
-                <span className="icon">{item.icon}</span>
-                {sidebarOpen && <span className="label">{item.name}</span>}
-              </a>
-            </li>
-          ))}
-        </ul>
-          <div type="button" onClick={()=>navigate("/")} className='px-2'>
-          <span >Home</span>
-      </div>
-          <div type="button" onClick={()=>setLogout(true)} className='px-2 hover:text-red-900'>
-          <span >Logout</span>
-      </div>
-  <button
-    type="button"
-    onClick={() => setProfileOpen((prev) => !prev)}
-    className="flex h-8 items-center gap-2 rounded-full border border-blue-600 p-1"
-  >
-   Profile
-  </button>
 
-  {profileOpen && (
-    <div className="absolute right-0 top-full z-[9999] mt-3 w-52 rounded-xl border border-slate-200 bg-white p-3 shadow-xl">
-      <p className="font-semibold text-slate-900">
-        {user?.name}
-      </p>
-     <p className="font-semibold text-slate-900 ">
-        {user?.email}
-      </p>
-      <p className="text-sm capitalize text-slate-500">
-        {user?.role}
-      </p>
+<ul className="space-y-2 py-8">
+  {menuItems.map((item) => {
+    const Icon = item.icon;
 
-      <hr className="my-3 border-slate-200" />
+    return (
+      <li key={item.name} className="relative">
+        {item.onClick ? (
+          <>
+            <button
+              type="button"
+              onClick={item.onClick}
+              className={`flex w-full items-center gap-3 rounded-lg px-4 py-3 hover:bg-slate-800 transition ${
+                item.className || ""
+              } ${!sidebarOpen ? "justify-center" : ""}`}
+            >
+              <Icon size={20} />
+              {sidebarOpen && <span>{item.name}</span>}
+            </button>
+            {item.name === "Profile" && profileOpen && (
+              <div className="absolute left-20 top-0 ml-2 w-56 rounded-xl border border-slate-200 bg-white p-3 shadow-xl z-50">
+                <p className="font-semibold text-slate-900">{user?.name}</p>
+                <p className="text-sm text-slate-600">{user?.email}</p>
+                <p className="text-sm capitalize text-slate-500">{user?.role}</p>
 
-      <button
-        onClick={() => setLogout(true)}
-        className="w-full rounded-lg px-3 py-2 text-left text-sm text-red-600 hover:bg-red-50"
-      >
-      Logout
-      </button>
-    </div>
-  )}
+                <hr className="my-3" />
+
+                <button
+                  onClick={() => setLogout(true)}
+                  className="w-full rounded-lg px-3 py-2 text-left text-red-600 hover:bg-red-50"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </>
+        ) : (
+          <Link
+            to={item.path}
+            className={`flex items-center gap-3 rounded-lg px-4 py-3 hover:bg-slate-800 transition ${
+              !sidebarOpen ? "justify-center" : ""
+            }`}
+          >
+            <Icon size={20} />
+            {sidebarOpen && <span>{item.name}</span>}
+          </Link>
+        )}
+      </li>
+    );
+  })}
+</ul>
       </nav>
-
-      <div className="sidebar-footer">
-        <p>{sidebarOpen && 'Admin Settings'}</p>
-      </div>
     </aside>
   )
 }

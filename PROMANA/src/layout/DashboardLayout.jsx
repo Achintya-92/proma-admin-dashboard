@@ -10,19 +10,13 @@ export default function DashboardLayout() {
       
   return (
     <div className="min-h-screen bg-slate-50">
-      {(user.role=="admin" && <Sidebar
+     <Sidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
       />
-      )}
-       
-      {(user.role=="admin" && <Navbar
+        <Navbar
         setSidebarOpen={setSidebarOpen}
       />
-      )}
-
-            {(user.role!="admin" && <Navbar/>
-      )}
         <main className="p-4 sm:p-6 lg:p-8 shadow-md lg:ml-18">
           <Outlet />
         </main>
